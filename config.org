@@ -5,9 +5,9 @@
 #+END_SRC
 ** use-package
 #+BEGIN_SRC emacs-lisp
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
 #+END_SRC
 * Start up
 ** Better defaults
@@ -197,13 +197,25 @@ Save bookmarks when modified
     (centaur-tabs-mode t))
 #+END_SRC
 * Advanced configuration
-** expand-region
+** Expand-region
 #+BEGIN_SRC emacs-lisp
 (use-package expand-region 
   :ensure t
   :bind 
   ("C-+" . er/expand-region)
   ("C--" . er/contract-region))
+#+END_SRC
+** Auto-completion
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :init
+    (add-hook 'after-init-hook 'global-company-mode)
+    (setq company-idle-delay 0
+          company-minimum-prefix-length 1
+          company-selection-wrap-around 1
+          company-tooltip-align-annotations 't)
+    (company-tng-configure-default))
 #+END_SRC
 * Org mode
 ** Org-bullets-mode
@@ -213,7 +225,6 @@ Save bookmarks when modified
   :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
-
 ** Shift select
 #+BEGIN_SRC emacs-lisp
 (setq org-support-shift-select t)
