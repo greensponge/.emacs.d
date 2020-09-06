@@ -123,9 +123,9 @@
     (setq dashboard-navigator-buttons
 	  `(
 	    ((,nil
-	      "init file"
-	      "Open init file"
-	      (lambda (&rest _) (find-file "~/.emacs.d/init.el"))
+	      "config file"
+	      "Open config file"
+	      (lambda (&rest _) (find-file "~/.emacs.d/config.org"))
 	      ))))
     )
     :config
