@@ -127,7 +127,18 @@ Save bookmarks when modified
 (setq ido-enable-flex-matching t)
 (ido-mode t)
 #+END_SRC
-
+** Org-mode
+*** Org-bullets-mode
+#+BEGIN_SRC emacs-lisp
+(use-package org-bullets
+  :ensure t
+  :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+END_SRC
+*** Shift select
+#+BEGIN_SRC emacs-lisp
+(setq org-support-shift-select t)
+#+END_SRC
 * General packages
 ** Which key
 #+BEGIN_SRC emacs-lisp
@@ -263,15 +274,29 @@ Save bookmarks when modified
                                                     ',init-tangle-start-time)))
               (message "ERROR: %s as tangle failed." ,org-file)))))))
 #+END_SRC
-* Org mode
-** Org-bullets-mode
+** Buffers
 #+BEGIN_SRC emacs-lisp
-(use-package org-bullets
-  :ensure t
-  :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-#+END_SRC
-** Shift select
-#+BEGIN_SRC emacs-lisp
-(setq org-support-shift-select t)
+  (use-package ibuffer
+    :ensure t
+    :bind ("C-x C-b" . ibuffer))
+
+  (use-package ibuffer-projectile
+    :after ibuffer
+    :preface
+    (defun my/ibuffer-projectile ()
+      (ibuffer-projectile-set-filter-groups)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+        (ibuffer-do-sort-by-alphabetic)))
+    :hook (ibuffer . my/ibuffer-projectile))
+
+  (defvar *protected-buffers* '("*scratch*" "*Messages*")
+    "Buffers that cannot be killed.")
+
+  (defun my/protected-buffers ()
+    "Protects some buffers from being killed."
+    (dolist (buffer *protected-buffers*)
+      (with-current-buffer buffer
+        (emacs-lock-mode 'kill))))
+
+  (add-hook 'after-init-hook #'my/protected-buffers)
 #+END_SRC
