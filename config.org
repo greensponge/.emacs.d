@@ -56,6 +56,16 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 #+END_SRC
 
+** Bookmarks
+Set bookmarks file
+#+BEGIN_SRC emacs-lisp
+(setq bookmark-default-file "~/.emacs.d/bookmarks")
+#+END_SRC
+
+Save bookmarks when modified
+#+BEGIN_SRC emacs-lisp
+(setq bookmark-save-flag 1)
+#+END_SRC
 * UI
 ** Theme
 #+BEGIN_SRC emacs-lisp
