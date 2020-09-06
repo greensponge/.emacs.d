@@ -157,7 +157,7 @@ Save bookmarks when modified
     (setq dashboard-banner-logo-title "Wherever you go, there you are.")
     (setq dashboard-set-file-icons t)
     (setq dashboard-set-heading-icons t)
-    (setq dashboard-startup-banner "~/.emacs.d/banners/emacs-logo.png")
+    (setq dashboard-startup-banner "~/.emacs.d/assets/images/emacs-logo.png")
     (setq show-week-agenda-p t)
     (setq dashboard-set-navigator t)
     (setq dashboard-navigator-buttons
