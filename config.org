@@ -130,15 +130,14 @@ Save bookmarks when modified
 ** Org-mode
 *** Org-bullets-mode
 #+BEGIN_SRC emacs-lisp
-(use-package org-bullets
-  :ensure t
-  :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (use-package org-bullets
+    :ensure t
+    :config
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 *** Shift select
-*** Get things done
 #+BEGIN_SRC emacs-lisp
-(setq org-support-shift-select t)
+  (setq org-support-shift-select t)
 #+END_SRC
 *** Get things done
 #+BEGIN_SRC emacs-lisp
@@ -214,15 +213,15 @@ Save bookmarks when modified
 #+END_SRC
 ** Centaur tabs
 #+BEGIN_SRC emacs-lisp
-(use-package centaur-tabs
-  :ensure t
-  :config
-    (setq centaur-tabs-set-bar 'over
+  (use-package centaur-tabs
+    :ensure t
+    :config
+    (setq centaur-tabs-set-bar 'under
           centaur-tabs-set-icons t
-          centaur-tabs-gray-out-icons 'buffer
-          centaur-tabs-height 24
+          centaur-tabs-height 32
           centaur-tabs-set-modified-marker t
-          centaur-tabs-modified-marker "*")
+          centaur-tabs-modified-marker "*"
+          x-underline-at-descent-line t)
     (centaur-tabs-mode t))
 #+END_SRC
 * Advanced configuration
