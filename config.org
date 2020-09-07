@@ -136,8 +136,24 @@ Save bookmarks when modified
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 *** Shift select
+*** Get things done
 #+BEGIN_SRC emacs-lisp
 (setq org-support-shift-select t)
+#+END_SRC
+*** Get things done
+#+BEGIN_SRC emacs-lisp
+  (setq org-tags-column 0)
+
+  (global-set-key (kbd "<f5>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/notes.org")))
+  (global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/gtd.org")))
+  (global-set-key (kbd "<f7>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/reports.org")))
+
+  (setq org-agenda-files '("~/.emacs.d/org-mode/org/gtd.org"
+                           "~/.emacs.d/org-mode/org/reports.org"))
+  (setq org-refile-targets '(("~/.emacs.d/org-mode/org/gtd.org" :maxlevel . 3)
+                             ("~/.emacs.d/org-mode/org/reports.org" :maxlevel . 2)))
+
+  (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 #+END_SRC
 * General packages
 ** Which key
