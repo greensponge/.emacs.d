@@ -315,3 +315,15 @@ Save bookmarks when modified
 
   (add-hook 'after-init-hook #'my/protected-buffers)
 #+END_SRC
+** Toggle maximize on selected buffer
+#+BEGIN_SRC emacs-lisp
+  (defun toggle-maximize-buffer () "Maximize buffer"
+    (interactive)
+    (if (= 1 (length (window-list)))
+        (jump-to-register '_) 
+      (progn
+        (window-configuration-to-register '_)
+        (delete-other-windows))))
+
+  (define-key global-map (kbd "C-c f") 'toggle-maximize-buffer)
+#+END_SRC
