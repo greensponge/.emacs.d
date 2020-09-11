@@ -4,6 +4,7 @@
 .cache
 /elpa/
 config.el
+ido.last
 
 # Third-party packages
 /history/

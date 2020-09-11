@@ -154,6 +154,16 @@ Save bookmarks when modified
 
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 #+END_SRC
+** Markdown-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package markdown-mode
+    :ensure t
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown"))
+#+END_SRC
 * General packages
 ** Which key
 #+BEGIN_SRC emacs-lisp
@@ -319,4 +329,36 @@ Save bookmarks when modified
            ("C-c <down>" . windmove-down)
            ("C-c <up>" . windmove-up)
            ("C-c <right>" . windmove-right)))
+#+END_SRC
+* Programming
+** Lisp
+*** SBCL & Quicklisp setup
+#+BEGIN_SRC markdown
+  Install the needed packages to use slime-helper by following these steps:
+
+  1. Install SBCL
+  2. Fetch quicklisp
+  3. Load quicklisp into SBCL context
+
+  ```sh
+  sudo apt-get install sbcl
+  curl -O http://beta.quicklisp.org/quicklisp.lisp
+  sbcl --load quicklisp.lisp
+  ```
+
+  Step into SBCL context by typing `sbcl` in your terminal and setup quick-lisp:
+
+  ```sh
+  (quicklisp-quickstart:install)
+  (ql:quickload "quicklisp-slime-helper")
+  ```
+#+END_SRC
+*** Load slime-helper
+#+BEGIN_SRC emacs-lisp
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+#+END_SRC
+
+#+BEGIN_SRC markdown
+  You can run the Common Lisp REPL like this: `M-x slime`
 #+END_SRC
