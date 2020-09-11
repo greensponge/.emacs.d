@@ -211,19 +211,6 @@ Save bookmarks when modified
   (setq treemacs-show-hidden-files t)
   (setq treemacs-follow-mode t))
 #+END_SRC
-** Centaur tabs
-#+BEGIN_SRC emacs-lisp
-  (use-package centaur-tabs
-    :ensure t
-    :config
-    (setq centaur-tabs-set-bar 'under
-          centaur-tabs-set-icons t
-          centaur-tabs-height 32
-          centaur-tabs-set-modified-marker t
-          centaur-tabs-modified-marker "*"
-          x-underline-at-descent-line t)
-    (centaur-tabs-mode t))
-#+END_SRC
 * Advanced configuration
 ** Expand-region
 #+BEGIN_SRC emacs-lisp
@@ -294,4 +281,42 @@ Save bookmarks when modified
     (defalias 'redo 'undo-tree-redo)
     :bind (("C-z" . undo)
            ("C-S-z" . redo)))
+#+END_SRC
+** Windows
+*** Don't prompt before killing buffer
+#+BEGIN_SRC emacs-lisp
+  (global-set-key [remap kill-buffer] #'kill-this-buffer)
+#+END_SRC
+*** Give focus to new buffer on creation
+#+BEGIN_SRC emacs-lisp
+  (use-package window
+    :ensure nil
+    :bind (("C-x 3" . hsplit-last-buffer)
+           ("C-x 2" . vsplit-last-buffer))
+    :preface
+    (defun hsplit-last-buffer ()
+      "Gives the focus to the last created horizontal window."
+      (interactive)
+      (split-window-horizontally)
+      (other-window 1))
+
+    (defun vsplit-last-buffer ()
+      "Gives the focus to the last created vertical window."
+      (interactive)
+      (split-window-vertically)
+      (other-window 1)))
+#+END_SRC
+*** switch-window
+#+BEGIN_SRC emacs-lisp
+  (use-package switch-window
+    :bind (("C-x o" . switch-window)
+           ("C-x w" . switch-window-then-swap-buffer)))
+#+END_SRC
+*** windmove
+#+BEGIN_SRC emacs-lisp
+  (use-package windmove
+    :bind (("C-c <left>" . windmove-left)
+           ("C-c <down>" . windmove-down)
+           ("C-c <up>" . windmove-up)
+           ("C-c <right>" . windmove-right)))
 #+END_SRC
