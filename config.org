@@ -47,12 +47,14 @@
  #+BEGIN_SRC emacs-lisp
  (setq inhibit-startup-message t)
  #+END_SRC
-
+*** Don't show menubar
+ #+BEGIN_SRC emacs-lisp
+   (menu-bar-mode -1)
+ #+END_SRC
 *** Don't show toolbar
  #+BEGIN_SRC emacs-lisp
  (tool-bar-mode -1)
  #+END_SRC
-
 *** Don't show scrollbar
  #+BEGIN_SRC emacs-lisp
  (scroll-bar-mode -1)
@@ -93,6 +95,10 @@
  Save bookmarks when modified
  #+BEGIN_SRC emacs-lisp
  (setq bookmark-save-flag 1)
+ #+END_SRC
+*** Disable wrapping for long lines in display
+ #+BEGIN_SRC emacs-lisp
+   (setq-default truncate-lines t)
  #+END_SRC
 ** Advanced
 *** Expand-region
@@ -203,6 +209,11 @@
             ("C-c <up>" . windmove-up)
             ("C-c <right>" . windmove-right)))
  #+END_SRC
+** Registers
+#+BEGIN_SRC emacs-lisp
+  (set-register ?b '(file . "~/.bashrc"))
+  (set-register ?c '(file . "~/.emacs.d/.config.org"))
+#+END_SRC
 * UI
 ** Theme
 #+BEGIN_SRC emacs-lisp
