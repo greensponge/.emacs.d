@@ -11,88 +11,198 @@
     (package-refresh-contents)
     (package-install 'use-package))
 #+END_SRC
-* Start up
-** Better defaults
-#+BEGIN_SRC emacs-lisp
-(setq-default
- ad-redefinition-action 'accept                   ; Silence warnings for redefinition
- cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
- display-time-default-load-average nil            ; Don't display load average
- fill-column 80                                   ; Set width for automatic line breaks
- help-window-select t                             ; Focus new help windows when opened
- indent-tabs-mode nil                             ; Prefers spaces over tabs
- inhibit-startup-screen t                         ; Disable start-up screen
- initial-scratch-message ""                       ; Empty the initial *scratch* buffer
- kill-ring-max 128                                ; Maximum length of kill ring
- load-prefer-newer t                              ; Prefers the newest version of a file
- mark-ring-max 128                                ; Maximum length of mark ring
- read-process-output-max (* 1024 1024)            ; Increase the amount of data reads from the process
- scroll-conservatively most-positive-fixnum       ; Always scroll by one line
- select-enable-clipboard t                        ; Merge system's and Emacs' clipboard
- tab-width 4                                      ; Set width for tabs
- use-package-always-ensure t                      ; Avoid the :ensure keyword for each package
- user-full-name "greensponge"                     ; Set the full name of the current user
- user-mail-address "greensponge@gmail.com"        ; Set the email address of the current user
- vc-follow-symlinks t                             ; Always follow the symlinks
- view-read-only t)                                ; Always open read-only buffers in view-mode
-(cd "~/")                                         ; Move to the user directory
-(display-time-mode 1)                             ; Enable time in the mode-line
-(fset 'yes-or-no-p 'y-or-n-p)                     ; Replace yes/no prompts with y/n
-(set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
-(show-paren-mode 1)                               ; Show the parent
-#+END_SRC
-* General settings
-** Don't show startup message
-#+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t)
-#+END_SRC
+* Configuration
+** Basic
+*** Better defaults
+ #+BEGIN_SRC emacs-lisp
+ (setq-default
+  ad-redefinition-action 'accept                   ; Silence warnings for redefinition
+  cursor-in-non-selected-windows t                 ; Hide the cursor in inactive windows
+  display-time-default-load-average nil            ; Don't display load average
+  fill-column 80                                   ; Set width for automatic line breaks
+  help-window-select t                             ; Focus new help windows when opened
+  indent-tabs-mode nil                             ; Prefers spaces over tabs
+  inhibit-startup-screen t                         ; Disable start-up screen
+  initial-scratch-message ""                       ; Empty the initial *scratch* buffer
+  kill-ring-max 128                                ; Maximum length of kill ring
+  load-prefer-newer t                              ; Prefers the newest version of a file
+  mark-ring-max 128                                ; Maximum length of mark ring
+  read-process-output-max (* 1024 1024)            ; Increase the amount of data reads from the process
+  scroll-conservatively most-positive-fixnum       ; Always scroll by one line
+  select-enable-clipboard t                        ; Merge system's and Emacs' clipboard
+  tab-width 4                                      ; Set width for tabs
+  use-package-always-ensure t                      ; Avoid the :ensure keyword for each package
+  user-full-name "greensponge"                     ; Set the full name of the current user
+  user-mail-address "greensponge@gmail.com"        ; Set the email address of the current user
+  vc-follow-symlinks t                             ; Always follow the symlinks
+  view-read-only t)                                ; Always open read-only buffers in view-mode
+ (cd "~/")                                         ; Move to the user directory
+ (display-time-mode 1)                             ; Enable time in the mode-line
+ (fset 'yes-or-no-p 'y-or-n-p)                     ; Replace yes/no prompts with y/n
+ (set-default-coding-systems 'utf-8)               ; Default to utf-8 encoding
+ (show-paren-mode 1)                               ; Show the parent
+ (blink-cursor-mode 0)                             ; Stops cursor blinking
+ #+END_SRC
+*** Don't show startup message
+ #+BEGIN_SRC emacs-lisp
+ (setq inhibit-startup-message t)
+ #+END_SRC
 
-** Don't show toolbar
-#+BEGIN_SRC emacs-lisp
-(tool-bar-mode -1)
-#+END_SRC
+*** Don't show toolbar
+ #+BEGIN_SRC emacs-lisp
+ (tool-bar-mode -1)
+ #+END_SRC
 
-** Don't show scrollbar
-#+BEGIN_SRC emacs-lisp
-(scroll-bar-mode -1)
-#+END_SRC
+*** Don't show scrollbar
+ #+BEGIN_SRC emacs-lisp
+ (scroll-bar-mode -1)
+ #+END_SRC
 
-** Highlight line
-#+BEGIN_SRC emacs-lisp
-(global-hl-line-mode +1)
-#+END_SRC
+*** Highlight line
+ #+BEGIN_SRC emacs-lisp
+ (global-hl-line-mode +1)
+ #+END_SRC
 
-** Delete selection
-#+BEGIN_SRC emacs-lisp
-(delete-selection-mode 1)
-#+END_SRC
+*** Delete selection
+ #+BEGIN_SRC emacs-lisp
+ (delete-selection-mode 1)
+ #+END_SRC
 
-** Split horizontally by default
-#+BEGIN_SRC emacs-lisp
-(setq split-height-threshold nil)
-(setq split-width-threshold 0)
-#+END_SRC
+*** Split horizontally by default
+ #+BEGIN_SRC emacs-lisp
+ (setq split-height-threshold nil)
+ (setq split-width-threshold 0)
+ #+END_SRC
 
-** Different backup directory
-#+BEGIN_SRC emacs-lisp
-(setq backup-directory-alist '(("." . "~/.saves")))
-#+END_SRC
+*** Different backup directory
+ #+BEGIN_SRC emacs-lisp
+ (setq backup-directory-alist '(("." . "~/.saves")))
+ #+END_SRC
 
-** Display line numbers in programming files
-#+BEGIN_SRC emacs-lisp
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-#+END_SRC
+*** Display line numbers in programming files
+ #+BEGIN_SRC emacs-lisp
+ (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+ #+END_SRC
 
-** Bookmarks
-Set bookmarks file
-#+BEGIN_SRC emacs-lisp
-(setq bookmark-default-file "~/.emacs.d/bookmarks")
-#+END_SRC
+*** Bookmarks
+ Set bookmarks file
+ #+BEGIN_SRC emacs-lisp
+ (setq bookmark-default-file "~/.emacs.d/bookmarks")
+ #+END_SRC
 
-Save bookmarks when modified
-#+BEGIN_SRC emacs-lisp
-(setq bookmark-save-flag 1)
-#+END_SRC
+ Save bookmarks when modified
+ #+BEGIN_SRC emacs-lisp
+ (setq bookmark-save-flag 1)
+ #+END_SRC
+** Advanced
+*** Expand-region
+ #+BEGIN_SRC emacs-lisp
+ (use-package expand-region 
+   :ensure t
+   :bind 
+   ("C-+" . er/expand-region)
+   ("C--" . er/contract-region))
+ #+END_SRC
+*** Auto-completion
+ #+BEGIN_SRC emacs-lisp
+   (use-package company
+     :ensure t
+     :init
+     (add-hook 'after-init-hook 'global-company-mode)
+     (setq company-idle-delay 0
+           company-minimum-prefix-length 1
+           company-selection-wrap-around 1
+           company-tooltip-align-annotations 't)
+     (company-tng-configure-default))
+ #+END_SRC
+*** Buffers
+ #+BEGIN_SRC emacs-lisp
+   (use-package ibuffer
+     :ensure t
+     :bind ("C-x C-b" . ibuffer))
+
+   (use-package ibuffer-projectile
+     :after ibuffer
+     :preface
+     (defun my/ibuffer-projectile ()
+       (ibuffer-projectile-set-filter-groups)
+       (unless (eq ibuffer-sorting-mode 'alphabetic)
+         (ibuffer-do-sort-by-alphabetic)))
+     :hook (ibuffer . my/ibuffer-projectile))
+
+   (defvar *protected-buffers* '("*scratch*" "*Messages*")
+     "Buffers that cannot be killed.")
+
+   (defun my/protected-buffers ()
+     "Protects some buffers from being killed."
+     (dolist (buffer *protected-buffers*)
+       (with-current-buffer buffer
+         (emacs-lock-mode 'kill))))
+
+   (add-hook 'after-init-hook #'my/protected-buffers)
+ #+END_SRC
+*** Toggle maximize on selected buffer
+ #+BEGIN_SRC emacs-lisp
+   (defun toggle-maximize-buffer () "Maximize buffer"
+     (interactive)
+     (if (= 1 (length (window-list)))
+         (jump-to-register '_) 
+       (progn
+         (window-configuration-to-register '_)
+         (delete-other-windows))))
+
+   (define-key global-map (kbd "C-c f") 'toggle-maximize-buffer)
+ #+END_SRC
+*** Undo and Redo
+ #+BEGIN_SRC emacs-lisp
+   (use-package undo-tree
+     :ensure t
+     :diminish undo-tree-mode
+     :init
+     (global-undo-tree-mode 1)
+     :config
+     (defalias 'redo 'undo-tree-redo)
+     :bind (("C-z" . undo)
+            ("C-S-z" . redo)))
+ #+END_SRC
+*** Windows
+**** Don't prompt before killing buffer
+ #+BEGIN_SRC emacs-lisp
+   (global-set-key [remap kill-buffer] #'kill-this-buffer)
+ #+END_SRC
+**** Give focus to new buffer on creation
+ #+BEGIN_SRC emacs-lisp
+   (use-package window
+     :ensure nil
+     :bind (("C-x 3" . hsplit-last-buffer)
+            ("C-x 2" . vsplit-last-buffer))
+     :preface
+     (defun hsplit-last-buffer ()
+       "Gives the focus to the last created horizontal window."
+       (interactive)
+       (split-window-horizontally)
+       (other-window 1))
+
+     (defun vsplit-last-buffer ()
+       "Gives the focus to the last created vertical window."
+       (interactive)
+       (split-window-vertically)
+       (other-window 1)))
+ #+END_SRC
+**** switch-window
+ #+BEGIN_SRC emacs-lisp
+   (use-package switch-window
+     :bind (("C-x o" . switch-window)
+            ("C-x w" . switch-window-then-swap-buffer)))
+ #+END_SRC
+**** windmove
+ #+BEGIN_SRC emacs-lisp
+   (use-package windmove
+     :bind (("C-c <left>" . windmove-left)
+            ("C-c <down>" . windmove-down)
+            ("C-c <up>" . windmove-up)
+            ("C-c <right>" . windmove-right)))
+ #+END_SRC
 * UI
 ** Theme
 #+BEGIN_SRC emacs-lisp
@@ -119,9 +229,8 @@ Save bookmarks when modified
 (set-face-attribute 'default nil :font "Source Code Pro Medium")
 (set-fontset-font t 'latin "Noto Sans")
 #+END_SRC
-
 * Modes
-** IDO
+** Ido-mode
 #+BEGIN_SRC emacs-lisp
 (setq ido-everywhere t)
 (setq ido-enable-flex-matching t)
@@ -220,115 +329,6 @@ Save bookmarks when modified
   :config
   (setq treemacs-show-hidden-files t)
   (setq treemacs-follow-mode t))
-#+END_SRC
-* Advanced configuration
-** Expand-region
-#+BEGIN_SRC emacs-lisp
-(use-package expand-region 
-  :ensure t
-  :bind 
-  ("C-+" . er/expand-region)
-  ("C--" . er/contract-region))
-#+END_SRC
-** Auto-completion
-#+BEGIN_SRC emacs-lisp
-  (use-package company
-    :ensure t
-    :init
-    (add-hook 'after-init-hook 'global-company-mode)
-    (setq company-idle-delay 0
-          company-minimum-prefix-length 1
-          company-selection-wrap-around 1
-          company-tooltip-align-annotations 't)
-    (company-tng-configure-default))
-#+END_SRC
-** Buffers
-#+BEGIN_SRC emacs-lisp
-  (use-package ibuffer
-    :ensure t
-    :bind ("C-x C-b" . ibuffer))
-
-  (use-package ibuffer-projectile
-    :after ibuffer
-    :preface
-    (defun my/ibuffer-projectile ()
-      (ibuffer-projectile-set-filter-groups)
-      (unless (eq ibuffer-sorting-mode 'alphabetic)
-        (ibuffer-do-sort-by-alphabetic)))
-    :hook (ibuffer . my/ibuffer-projectile))
-
-  (defvar *protected-buffers* '("*scratch*" "*Messages*")
-    "Buffers that cannot be killed.")
-
-  (defun my/protected-buffers ()
-    "Protects some buffers from being killed."
-    (dolist (buffer *protected-buffers*)
-      (with-current-buffer buffer
-        (emacs-lock-mode 'kill))))
-
-  (add-hook 'after-init-hook #'my/protected-buffers)
-#+END_SRC
-** Toggle maximize on selected buffer
-#+BEGIN_SRC emacs-lisp
-  (defun toggle-maximize-buffer () "Maximize buffer"
-    (interactive)
-    (if (= 1 (length (window-list)))
-        (jump-to-register '_) 
-      (progn
-        (window-configuration-to-register '_)
-        (delete-other-windows))))
-
-  (define-key global-map (kbd "C-c f") 'toggle-maximize-buffer)
-#+END_SRC
-** Undo and Redo
-#+BEGIN_SRC emacs-lisp
-  (use-package undo-tree
-    :ensure t
-    :diminish undo-tree-mode
-    :init
-    (global-undo-tree-mode 1)
-    :config
-    (defalias 'redo 'undo-tree-redo)
-    :bind (("C-z" . undo)
-           ("C-S-z" . redo)))
-#+END_SRC
-** Windows
-*** Don't prompt before killing buffer
-#+BEGIN_SRC emacs-lisp
-  (global-set-key [remap kill-buffer] #'kill-this-buffer)
-#+END_SRC
-*** Give focus to new buffer on creation
-#+BEGIN_SRC emacs-lisp
-  (use-package window
-    :ensure nil
-    :bind (("C-x 3" . hsplit-last-buffer)
-           ("C-x 2" . vsplit-last-buffer))
-    :preface
-    (defun hsplit-last-buffer ()
-      "Gives the focus to the last created horizontal window."
-      (interactive)
-      (split-window-horizontally)
-      (other-window 1))
-
-    (defun vsplit-last-buffer ()
-      "Gives the focus to the last created vertical window."
-      (interactive)
-      (split-window-vertically)
-      (other-window 1)))
-#+END_SRC
-*** switch-window
-#+BEGIN_SRC emacs-lisp
-  (use-package switch-window
-    :bind (("C-x o" . switch-window)
-           ("C-x w" . switch-window-then-swap-buffer)))
-#+END_SRC
-*** windmove
-#+BEGIN_SRC emacs-lisp
-  (use-package windmove
-    :bind (("C-c <left>" . windmove-left)
-           ("C-c <down>" . windmove-down)
-           ("C-c <up>" . windmove-up)
-           ("C-c <right>" . windmove-right)))
 #+END_SRC
 * Programming
 ** Lisp
