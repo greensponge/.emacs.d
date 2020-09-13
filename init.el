@@ -6,7 +6,9 @@
 (require 'package)
 (package-initialize)
 
-(org-babel-load-file (expand-file-name "config.org" user-emacs-directory))
+(if (file-exists-p (expand-file-name "config.el" user-emacs-directory))
+    (load-file (expand-file-name "config.el" user-emacs-directory))
+  (org-babel-load-file (expand-file-name "config.org" user-emacs-directory)))
 
 ;; Make gc pause faster by decreasing the threshold.
 (setq gc-cons-threshold (* 10 1000 1000))

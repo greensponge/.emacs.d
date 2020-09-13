@@ -1,3 +1,4 @@
+#+PROPERTY: header-args :tangle yes
 * Emacs initialization
 ** Package sources
 #+BEGIN_SRC emacs-lisp
@@ -209,6 +210,13 @@
             ("C-c <up>" . windmove-up)
             ("C-c <right>" . windmove-right)))
  #+END_SRC
+*** Add org-babel-tangle local variable to safe-list
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'safe-local-variable-values
+               '(eval add-hook 'after-save-hook
+                      (lambda () (org-babel-tangle nil nil "emacs-lisp"))
+                      nil t))
+#+END_SRC
 ** Registers
 #+BEGIN_SRC emacs-lisp
   (set-register ?b '(file . "~/.bashrc"))
@@ -380,3 +388,9 @@
 #+BEGIN_SRC markdown
   You can run the Common Lisp REPL like this: `M-x slime`
 #+END_SRC
+
+* Local variables
+Keep this at or near the end of the file: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html][Source]]
+# Local Variables:
+# eval: (add-hook 'after-save-hook (lambda () (org-babel-tangle nil nil "emacs-lisp")) nil t)
+# End:
