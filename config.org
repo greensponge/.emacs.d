@@ -267,18 +267,42 @@
 #+BEGIN_SRC emacs-lisp
   (setq org-support-shift-select t)
 #+END_SRC
-*** Get things done
+*** Useful global keys
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
+#+END_SRC
+*** Personal org-files
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c m c") (lambda() (interactive)(find-file "~/.emacs.d/config.org"))) ; config file
+  (global-set-key (kbd "C-c m n") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/notes.org"))) ; my notes
+  (global-set-key (kbd "C-c m r") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/reports.org"))) ; my reports
+#+END_SRC
+*** Getting things done
 #+BEGIN_SRC emacs-lisp
   (setq org-tags-column 0)
+ 
+  (global-set-key (kbd "<f5>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/gtd.org")))
+  (global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/inbox.org")))
+  (global-set-key (kbd "<f7>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/tickler.org")))
+  (global-set-key (kbd "<f8>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/someday.org")))
 
-  (global-set-key (kbd "<f5>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/notes.org")))
-  (global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/gtd.org")))
-  (global-set-key (kbd "<f7>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/reports.org")))
 
   (setq org-agenda-files '("~/.emacs.d/org-mode/org/gtd.org"
-                           "~/.emacs.d/org-mode/org/reports.org"))
+                           "~/.emacs.d/org-mode/org/inbox.org"
+                           "~/.emacs.d/org-mode/org/tickler.org"))
+
   (setq org-refile-targets '(("~/.emacs.d/org-mode/org/gtd.org" :maxlevel . 3)
-                             ("~/.emacs.d/org-mode/org/reports.org" :maxlevel . 2)))
+                             ("~/.emacs.d/org-mode/org/someday.org" :maxlevel . 1)
+                             ("~/.emacs.d/org-mode/org/tickler.org" :maxlevel . 2)))
+
+  (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                                 (file+headline "~/.emacs.d/org-mode/org/inbox.org" "Tasks")
+                                 "* TODO %i%?")
+                                ("T" "Tickler" entry
+                                 (file+headline "~/.emacs.d/org-mode/org/tickler.org" "Tickler")
+                                 "* %i%? \n %U")))
 
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 #+END_SRC
@@ -344,7 +368,7 @@
   :ensure t
   :bind
   (:map global-map
-	([f8] . treemacs))
+	([f9] . treemacs))
   :config
   (setq treemacs-show-hidden-files t)
   (setq treemacs-follow-mode t))
