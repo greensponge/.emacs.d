@@ -306,6 +306,13 @@
 
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 #+END_SRC
+*** Tags
+#+BEGIN_SRC emacs-lisp
+  ;; Documentation:  https://orgmode.org/org.html#Tags
+  (setq org-tag-alist '((:startgroup . nil)
+                        ("@work" . ?w) ("@home" . ?h)
+                        (:endgroup . nil)))
+#+END_SRC
 ** Markdown-mode
 #+BEGIN_SRC emacs-lisp
   (use-package markdown-mode
