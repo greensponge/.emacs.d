@@ -1,12 +1,14 @@
 <p align="center"><img src="assets/images/emacs-logo.png" width=150 height=150/></p>
 <p align="center">This repository contains my Emacs configuration.</p>
+
 ---
+
 Work in progress, I'll expand the description after I've configured my Emacs a little further along.
 
 But for now, the most important files are:
 
 * [`config.org`](https://github.com/greensponge/.emacs.d/blob/master/config.org/):
- This is the main configuration file. When changes are saved here it will update the generated =config.el= file automatically.
+ This is the main configuration file. When changes are saved here it will update the generated `config.el` file automatically.
 
 * [`init.el`](https://github.com/greensponge/.emacs.d/blob/master/init.el/):
   This loads the generated configuration file when Emacs starts.
