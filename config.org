@@ -450,6 +450,65 @@ Source: [[https://github.com/emacs-lsp/lsp-java][lsp-java]]
 #+BEGIN_SRC emacs-lisp
   (use-package dap-java :ensure nil)
 #+END_SRC
+** JavaScript
+*** JSON
+#+BEGIN_SRC emacs-lisp
+  (use-package json-mode
+    :mode "\\.json\\'"
+    :hook (before-save . my/json-mode-before-save-hook)
+    :preface
+    (defun my/json-mode-before-save-hook ()
+      (when (eq major-mode 'json-mode)
+        (json-pretty-print-buffer)))
+
+    (defun my/json-array-of-numbers-on-one-line (encode array)
+      "Prints the arrays of numbers in one line."
+      (let* ((json-encoding-pretty-print
+              (and json-encoding-pretty-print
+                   (not (loop for x across array always (numberp x)))))
+             (json-encoding-separator (if json-encoding-pretty-print "," ", ")))
+        (funcall encode array)))
+    :config (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line))
+#+END_SRC
+** TypeScript
+*** Setup-tide-mode
+Note you need to have =tslint= installed globally for it to be enabled. 
+Installing =TypeScript= globally might also be a good idea at this point.
+#+BEGIN_SRC markdown
+    `npm install -g tslint`
+    `npm install -g typescript`
+
+  You can execute `C-c ! v` to check what syntax checkers are running to confirm that everything works.
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+  (defun setup-tide-mode ()
+    (interactive)
+    (tide-setup)
+    (flycheck-mode +1)
+    (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (eldoc-mode +1)
+    (tide-hl-identifier-mode +1)
+    (company-mode +1))
+
+  ;; aligns annotation to the right hand side
+  (setq company-tooltip-align-annotations t)
+
+  ;; formats the buffer before saving
+  (add-hook 'before-save-hook 'tide-format-before-save)
+
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+#+END_SRC
+*** Tide package setup
+#+BEGIN_SRC emacs-lisp
+  (use-package tide
+    :after typescript-mode
+    :ensure t)
+#+END_SRC
+*** Typescript-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package typescript-mode
+    :ensure t)
+#+END_SRC
 * Local variables
 Keep this at or near the end of the file: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html][Source]]
 # Local Variables:
