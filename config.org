@@ -101,6 +101,11 @@
  #+BEGIN_SRC emacs-lisp
    (setq-default truncate-lines t)
  #+END_SRC
+*** Disable locking files
+ #+BEGIN_SRC emacs-lisp
+   (setq create-lockfiles nil)
+ #+END_SRC
+
 ** Advanced
 *** Expand-region
  #+BEGIN_SRC emacs-lisp
@@ -407,6 +412,13 @@ You need to install =pandoc= separately on your system for preview to work.
     :ensure t)
 #+END_SRC
 * Programming
+** EditorConfig
+#+BEGIN_SRC emacs-lisp
+  (use-package editorconfig
+    :ensure t
+    :config
+    (editorconfig-mode 1))
+#+END_SRC
 ** Lisp
 *** SBCL & Quicklisp setup
 #+BEGIN_SRC markdown
