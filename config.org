@@ -105,7 +105,13 @@
  #+BEGIN_SRC emacs-lisp
    (setq create-lockfiles nil)
  #+END_SRC
-
+*** Move-text
+ #+BEGIN_SRC emacs-lisp
+   (use-package move-text
+     :bind (("M-<up>" . move-text-up)
+            ("M-<down>" . move-text-down))
+     :config (move-text-default-bindings))
+ #+END_SRC
 ** Advanced
 *** Expand-region
  #+BEGIN_SRC emacs-lisp
@@ -331,7 +337,9 @@ You need to install =pandoc= separately on your system for preview to work.
 #+END_SRC
 ** Lsp-mode
 #+BEGIN_SRC emacs-lisp
-  (use-package lsp-mode :hook ((lsp-mode . lsp-enable-which-key-integration))
+  (use-package lsp-mode
+    :hook ((css-mode . lsp)
+    (lsp-mode . lsp-enable-which-key-integration))
     :ensure t
     :config (setq lsp-completion-enable-additional-text-edit nil))
 
@@ -419,38 +427,12 @@ You need to install =pandoc= separately on your system for preview to work.
     :config
     (editorconfig-mode 1))
 #+END_SRC
-** Lisp
-*** SBCL & Quicklisp setup
-#+BEGIN_SRC markdown
-  Install the needed packages to use slime-helper by following these steps:
 
-  1. Install SBCL
-  2. Fetch quicklisp
-  3. Load quicklisp into SBCL context
-
-  ```sh
-  sudo apt-get install sbcl
-  curl -O http://beta.quicklisp.org/quicklisp.lisp
-  sbcl --load quicklisp.lisp
-  ```
-
-  Step into SBCL context by typing `sbcl` in your terminal and setup quick-lisp:
-
-  ```sh
-  (quicklisp-quickstart:install)
-  (ql:quickload "quicklisp-slime-helper")
-  ```
-#+END_SRC
-*** Load slime-helper
+** HTML
 #+BEGIN_SRC emacs-lisp
-  (load (expand-file-name "~/quicklisp/slime-helper.el"))
-  (setq inferior-lisp-program "/usr/bin/sbcl")
+  (use-package emmet-mode
+    :hook (css-mode sgml-mode web-mode))
 #+END_SRC
-
-#+BEGIN_SRC markdown
-  You can run the Common Lisp REPL like this: `M-x slime`
-#+END_SRC
-
 ** Java
 *** Lsp-java
 Press =[TAB]= and =[RET]= if language server prompts you when opening a =.Java= file.
@@ -481,6 +463,37 @@ Source: [[https://github.com/emacs-lsp/lsp-java][lsp-java]]
              (json-encoding-separator (if json-encoding-pretty-print "," ", ")))
         (funcall encode array)))
     :config (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line))
+#+END_SRC
+** Lisp
+*** SBCL & Quicklisp setup
+#+BEGIN_SRC markdown
+  Install the needed packages to use slime-helper by following these steps:
+
+  1. Install SBCL
+  2. Fetch quicklisp
+  3. Load quicklisp into SBCL context
+
+  ```sh
+  sudo apt-get install sbcl
+  curl -O http://beta.quicklisp.org/quicklisp.lisp
+  sbcl --load quicklisp.lisp
+  ```
+
+  Step into SBCL context by typing `sbcl` in your terminal and setup quick-lisp:
+
+  ```sh
+  (quicklisp-quickstart:install)
+  (ql:quickload "quicklisp-slime-helper")
+  ```
+#+END_SRC
+*** Load slime-helper
+#+BEGIN_SRC emacs-lisp
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+  (setq inferior-lisp-program "/usr/bin/sbcl")
+#+END_SRC
+
+#+BEGIN_SRC markdown
+  You can run the Common Lisp REPL like this: `M-x slime`
 #+END_SRC
 ** TypeScript
 *** Setup-tide-mode
