@@ -112,6 +112,10 @@
             ("M-<down>" . move-text-down))
      :config (move-text-default-bindings))
  #+END_SRC
+*** Auto-reload files when they have been updated
+#+BEGIN_SRC emacs-lisp
+   (global-auto-revert-mode t)
+ #+END_SRC
 ** Advanced
 *** Expand-region
  #+BEGIN_SRC emacs-lisp
