@@ -132,7 +132,7 @@
      :init
      (add-hook 'after-init-hook 'global-company-mode)
      (setq company-idle-delay 0
-           company-minimum-prefix-length 1
+           company-minimum-prefix-length 3
            company-selection-wrap-around 1
            company-tooltip-align-annotations 't)
      (company-tng-configure-default))
