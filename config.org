@@ -290,9 +290,10 @@
 #+END_SRC
 *** Personal org-files
 #+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "C-c m c") (lambda() (interactive)(find-file "~/.emacs.d/config.org"))) ; config file
-  (global-set-key (kbd "C-c m n") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/notes.org"))) ; my notes
-  (global-set-key (kbd "C-c m r") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/reports.org"))) ; my reports
+  (global-set-key (kbd "C-c m c") (lambda() (interactive)(find-file "~/.emacs.d/config.org")))
+  (global-set-key (kbd "C-c m n") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/notes.org")))
+  (global-set-key (kbd "C-c m r") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/reports.org")))
+  (global-set-key (kbd "C-c m j") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/journal.org")))
 #+END_SRC
 *** Getting things done
 #+BEGIN_SRC emacs-lisp
