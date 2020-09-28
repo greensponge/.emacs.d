@@ -305,9 +305,7 @@
     (global-set-key (kbd "<f8>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/someday.org")))
 
 
-    (setq org-agenda-files '("~/.emacs.d/org-mode/org/gtd.org"
-                             "~/.emacs.d/org-mode/org/inbox.org"
-                             "~/.emacs.d/org-mode/org/tickler.org"))
+    (setq org-agenda-files '("~/.emacs.d/org-mode/org"))
 
     (setq org-refile-targets '(("~/.emacs.d/org-mode/org/gtd.org" :maxlevel . 3)
                                ("~/.emacs.d/org-mode/org/someday.org" :maxlevel . 1)
