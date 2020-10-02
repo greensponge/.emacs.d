@@ -470,7 +470,7 @@ Source: [[https://github.com/emacs-lsp/lsp-java][lsp-java]]
         (funcall encode array)))
     :config (advice-add 'json-encode-array :around #'my/json-array-of-numbers-on-one-line))
 #+END_SRC
-** Lisp
+** Common Lisp
 *** SBCL & Quicklisp setup
 #+BEGIN_SRC markdown
   Install the needed packages to use slime-helper by following these steps:
@@ -500,6 +500,54 @@ Source: [[https://github.com/emacs-lsp/lsp-java][lsp-java]]
 
 #+BEGIN_SRC markdown
   You can run the Common Lisp REPL like this: `M-x slime`
+#+END_SRC
+** Clojure
+*** Smartparens
+#+BEGIN_SRC emacs-lisp
+  (use-package smartparens
+    :init
+    (bind-key "C-M-f" #'sp-forward-sexp smartparens-mode-map)
+    (bind-key "C-M-b" #'sp-backward-sexp smartparens-mode-map)
+    (bind-key "C-)" #'sp-forward-slurp-sexp smartparens-mode-map)
+    (bind-key "C-(" #'sp-backward-slurp-sexp smartparens-mode-map)
+    (bind-key "M-)" #'sp-forward-barf-sexp smartparens-mode-map)
+    (bind-key "M-(" #'sp-backward-barf-sexp smartparens-mode-map)
+    (bind-key "C-S-s" #'sp-splice-sexp)
+    (bind-key "C-M-<backspace>" #'backward-kill-sexp)
+    (bind-key "C-M-S-<SPC>" (lambda () (interactive) (mark-sexp -1)))
+
+    :config
+    (smartparens-global-mode t)
+
+    (sp-pair "'" nil :actions :rem)
+    (sp-pair "`" nil :actions :rem)
+    (setq sp-highlight-pair-overlay nil))
+#+END_SRC
+*** Clojure-mode
+#+BEGIN_SRC emacs-lisp
+  (use-package clojure-mode
+    :ensure t
+    :mode (("\\.clj\\'" . clojure-mode)
+           ("\\.edn\\'" . clojure-mode))
+    :init
+    (add-hook 'clojure-mode-hook #'smartparens-mode)       
+    (add-hook 'clojure-mode-hook #'eldoc-mode))
+#+END_SRC
+*** Cider
+#+BEGIN_SRC emacs-lisp
+  (use-package cider
+    :ensure t
+    :defer t
+    :init (add-hook 'cider-mode-hook #'clj-refactor-mode)
+    :config
+    (setq nrepl-log-messages t                  
+          cider-repl-display-in-current-window t
+          cider-repl-use-clojure-font-lock t    
+          cider-prompt-save-file-on-load 'always-save
+          cider-font-lock-dynamically '(macro core function var)
+          nrepl-hide-special-buffers t            
+          cider-overlays-use-font-lock t)         
+    (cider-repl-toggle-pretty-printing))
 #+END_SRC
 ** TypeScript
 *** Setup-tide-mode
