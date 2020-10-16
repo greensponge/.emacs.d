@@ -271,6 +271,16 @@
 (ido-mode t)
 #+END_SRC
 ** Org-mode
+*** Org-babel-do-load-languages
+    #+BEGIN_SRC emacs-lisp
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((emacs-lisp . t)
+         (shell . t)))
+
+      ;; stop asking for confirmation
+      (setq org-confirm-babel-evaluate nil)
+    #+END_SRC
 *** Org-bullets-mode
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
