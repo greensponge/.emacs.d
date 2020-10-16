@@ -426,6 +426,12 @@ You need to install =pandoc= separately on your system for preview to work.
     :ensure t)
 #+END_SRC
 * Programming
+** C#
+   #+BEGIN_SRC emacs-lisp
+     (use-package csharp-mode
+       :hook
+       ((csharp-mode . lsp-deferred)))
+   #+END_SRC
 ** EditorConfig
 #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
