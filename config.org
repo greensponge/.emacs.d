@@ -504,6 +504,19 @@ You need to install =pandoc= separately on your system for preview to work.
     :defer 1
     :after counsel)
 #+END_SRC
+** Helpful
+#+BEGIN_SRC emacs-lisp
+  (use-package helpful
+    :ensure t
+    :custom
+    (counsel-describe-function-function #'helpful-callable)
+    (counsel-describe-variable-function #'helpful-variable)
+    :bind
+    ([remap describe-function] . counsel-describe-function)
+    ([remap describe-command] . helpful-command)
+    ([remap describe-variable] . counsel-describe-variable)
+    ([remap describe-key] . helpful-key))
+#+END_SRC
 * Programming
 ** C#
    #+BEGIN_SRC emacs-lisp
