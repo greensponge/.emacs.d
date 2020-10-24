@@ -247,7 +247,7 @@
 (use-package doom-themes
   :ensure t
   :config
-  (load-theme 'doom-vibrant 'no-confirm))
+  (load-theme 'doom-gruvbox 'no-confirm))
 #+END_SRC
 
 ** Modeline

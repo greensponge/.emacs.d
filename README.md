@@ -1,9 +1,9 @@
 <p align="center">This repository contains my Emacs configuration.</p>
-<p align="center"><img src="assets/images/dashboard.png"/></p>
+<p align="center"><img src="assets/images/gruvbox-example.png"/></p>
 
 <blockquote>
     Modeline: <a href="https://github.com/seagle0128/doom-modeline">DOOM Modeline</a> <br>
-    Theme: <a href="https://github.com/hlissner/emacs-doom-themes">DOOM Vibrant</a> <br>
+    Theme: <a href="https://github.com/hlissner/emacs-doom-themes">DOOM Gruvbox</a> <br>
     Font: <a href="https://adobe-fonts.github.io/source-code-pro">Source Code Pro</a>
 </blockquote>
 
