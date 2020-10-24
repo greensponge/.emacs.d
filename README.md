@@ -24,11 +24,6 @@ If you're starting fresh, clone this repository into your home directory:
 
 If you're on Windows it can vary if you're using `WSL`, `Chocolatey` or have installed Emacs manually. In general you just have to find where your Emacs home directory lives and replace the .emacs.d folder with this one.
 
-# First run
-The first time you start this configuration it will ask you if you want to allow a local variable I have defined in `config.org` to run.
-This warning only happens when the `config.el` file is first generated and you can simply press `y` to proceed.
-All that the local variable does is add a `save-hook` on `config.org` that `tangles` (updates) the `config.el` file whenever `config.org` is saved.
-
 # Getting things done (GTD)
 I have configured GTD to be easily accessible for me, however, you do not have these files, because I don't have them in source control.
 You will get warnings about missing files the first time you start Emacs, i.e. `gtd.org cannot be found`. You can proceed by pressing `y` to add the file to an ignored list.

@@ -1,4 +1,5 @@
-#+PROPERTY: header-args :tangle yes
+#+TITLE: Emacs Configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ./config.el
 * Emacs initialization
 ** Package sources
 #+BEGIN_SRC emacs-lisp
@@ -225,12 +226,15 @@
             ("C-c <up>" . windmove-up)
             ("C-c <right>" . windmove-right)))
  #+END_SRC
-*** Add org-babel-tangle local variable to safe-list
+*** Automatically tangle org file on save
+    Tangle after-save-hook, only on org-files
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'safe-local-variable-values
-               '(eval add-hook 'after-save-hook
-                      (lambda () (org-babel-tangle nil nil "emacs-lisp"))
-                      nil t))
+  (defun dw/org-babel-tangle-dont-ask ()
+    (let ((org-confirm-babel-evaluate nil))
+      (org-babel-tangle)))
+
+  (add-hook 'org-mode-hook (lambda () (add-hook 'after-save-hook #'dw/org-babel-tangle-dont-ask
+                                                'run-at-end 'only-in-org-mode)))
 #+END_SRC
 ** Registers
 #+BEGIN_SRC emacs-lisp
@@ -675,8 +679,3 @@ Installing =TypeScript= globally might also be a good idea at this point.
   (use-package typescript-mode
     :ensure t)
 #+END_SRC
-* Local variables
-Keep this at or near the end of the file: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Specifying-File-Variables.html][Source]]
-# Local Variables:
-# eval: (add-hook 'after-save-hook (lambda () (org-babel-tangle nil nil "emacs-lisp")) nil t)
-# End:
