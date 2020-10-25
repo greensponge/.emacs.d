@@ -19,25 +19,21 @@ The most important files:
 If you're starting fresh, clone this repository into your home directory:
 
 ```
-~: git clone https://github.com/greensponge/.emacs.d.git
+git clone https://github.com/greensponge/.emacs.d.git
 ```
 
 If you're on Windows it can vary if you're using `WSL`, `Chocolatey` or have installed Emacs manually. In general you just have to find where your Emacs home directory lives and replace the .emacs.d folder with this one.
 
-# Getting things done (GTD)
-I have configured GTD to be easily accessible for me, however, you do not have these files, because I don't have them in source control.
-You will get warnings about missing files the first time you start Emacs, i.e. `gtd.org cannot be found`. You can proceed by pressing `y` to add the file to an ignored list.
-
 # Snippets
-The best way to learn might not be to clone this repository though, you probably don't like what I like. If that's the case I invite you to look at the [`config.org`](https://github.com/greensponge/.emacs.d/blob/master/config.org/) file and take what you like.
+Look at the [`config.org`](https://github.com/greensponge/.emacs.d/blob/master/config.org/) file and take what you like.
 
-If you find something you like and want to try it out, paste it into your own configuration and press:
+If you find something you want to try out, paste it into your own configuration and press:
 
 `C-x C-e`
 
 With the marker/point at the end of the functions closing paranthesis.
 
-If you're unfamiliar, this is what's called a key chord in Emacs, and it's simply a succint way to say: 
+If you're unfamiliar, this is what's called a key chord in Emacs, and it's simply a succint way of saying: 
 
 `CTRL+X CTRL+E`
 
