@@ -117,6 +117,13 @@
 #+BEGIN_SRC emacs-lisp
    (global-auto-revert-mode t)
  #+END_SRC
+*** Open shell
+#+BEGIN_SRC emacs-lisp
+  (use-package shell-pop
+    :ensure t)
+  (global-set-key (kbd "C-f") 'shell-pop) ; I never use the forward char shortcut anyway.
+  (setq shell-pop-term-shell "/bin/bash")
+#+END_SRC
 ** Advanced
 *** Expand-region
  #+BEGIN_SRC emacs-lisp
@@ -423,7 +430,7 @@ You need to install =pandoc= separately on your system for preview to work.
   :config
   (setq treemacs-show-hidden-files t)
   (setq treemacs-follow-mode t))
-  (global-set-key (kbd "C-b") 'treemacs) ; I never use forward/backward char shortcuts anyway.
+  (global-set-key (kbd "C-b") 'treemacs) ; I never use the backward char shortcut anyway.
 #+END_SRC
 
 ** Magit
