@@ -526,6 +526,18 @@ You need to install =pandoc= separately on your system for preview to work.
     ([remap describe-variable] . counsel-describe-variable)
     ([remap describe-key] . helpful-key))
 #+END_SRC
+** Calfw (With Org calendar)
+#+BEGIN_SRC emacs-lisp
+  (use-package calfw
+    :ensure t)
+
+  (use-package calfw-org
+    :ensure t)
+
+  (setq calendar-week-start-day 1)
+
+ (global-set-key (kbd "C-c m a") 'cfw:open-org-calendar)
+#+END_SRC
 * Programming
 ** C#
    #+BEGIN_SRC emacs-lisp
