@@ -429,7 +429,8 @@ You need to install =pandoc= separately on your system for preview to work.
   :ensure t
   :config
   (setq treemacs-show-hidden-files t)
-  (setq treemacs-follow-mode t))
+  (setq treemacs-follow-mode t)
+  (setq treemacs-project-follow-cleanup t))
   (global-set-key (kbd "C-b") 'treemacs) ; I never use the backward char shortcut anyway.
 #+END_SRC
 
