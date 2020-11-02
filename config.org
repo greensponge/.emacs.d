@@ -622,6 +622,20 @@ Source: [[https://github.com/emacs-lsp/lsp-java][lsp-java]]
   You can run the Common Lisp REPL like this: `M-x slime`
 #+END_SRC
 ** Clojure
+*** Aggressive-indent
+#+BEGIN_SRC emacs-lisp
+  (use-package aggressive-indent
+    :hook ((css-mode . aggressive-indent-mode)
+           (emacs-lisp-mode . aggressive-indent-mode)
+           (clojure-mode . aggressive-indent-mode)
+           (lisp-mode . aggressive-indent-mode))
+    :custom (aggressive-indent-comments-too))
+#+END_SRC
+*** Rainbow-delimiters
+#+BEGIN_SRC emacs-lisp
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
+#+END_SRC
 *** Smartparens
 #+BEGIN_SRC emacs-lisp
   (use-package smartparens
@@ -656,7 +670,9 @@ Source: [[https://github.com/emacs-lsp/lsp-java][lsp-java]]
 *** Cider
 #+BEGIN_SRC emacs-lisp
   (use-package cider
-    :ensure t)
+    :ensure t
+    :config
+    (setq cider-font-lock-dynamically '(macro core function var)))
 #+END_SRC
 ** TypeScript
 *** Setup-tide-mode
