@@ -636,18 +636,35 @@ Source: [[https://github.com/emacs-lsp/lsp-java][lsp-java]]
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
 #+END_SRC
-*** Paredit
+*** Smartparens
 #+BEGIN_SRC emacs-lisp
-  (use-package paredit
+  (use-package smartparens
     :ensure t
-    :config
-    (add-hook 'clojure-mode-hook 'paredit-mode)
-    (define-key paredit-mode-map (kbd "C-M-w") 'sp-copy-sexp)
-    (define-key paredit-mode-map (kbd "C-M-{") 'paredit-wrap-curly)
-    (define-key paredit-mode-map (kbd "C-M-<") 'paredit-wrap-square)
-    (define-key paredit-mode-map (kbd "C-M-(") 'paredit-wrap-round)
-    (define-key paredit-mode-map (kbd "C-M-f") 'clojure-forward-logical-sexp)
-    (define-key paredit-mode-map (kbd "C-M-b") 'clojure-backward-logical-sexp))
+    :config (smartparens-global-mode 1)
+    :bind (("C-M-a"     . sp-beginning-of-sexp)
+           ("C-M-e"     . sp-end-of-sexp)
+           ("C-<down>"  . sp-down-sexp)
+           ("C-<up>"    . sp-up-sexp)
+           ("M-<down>"  . sp-backward-down-sexp)
+           ("M-<up>"    . sp-backward-up-sexp)
+           ("C-M-f"     . sp-forward-sexp)
+           ("C-M-b"     . sp-backward-sexp)
+           ("C-M-n"     . sp-next-sexp)
+           ("C-M-p"     . sp-previous-sexp)
+           ("C-S-b"     . sp-backward-symbol)
+           ("C-S-f"     . sp-forward-symbol)
+           ("C-S-M->"   . sp-backward-unwrap)
+           ("C-M-<"     . sp-unwrap-sexp)
+           ("C-<right>" . sp-forward-slurp-sexp)
+           ("M-<right>" . sp-forward-barf-sexp)
+           ("C-<left>"  . sp-backward-slurp-sexp)
+           ("M-<left>"  . sp-backward-barf-sexp)
+           ("C-M-t"     . sp-transpose-sexp)
+           ("C-M-k"     . sp-kill-sexp)
+           ("C-k"       . sp-kill-hybrid-sexp)
+           ("M-k"       . sp-backward-kill-sexp)))
+
+  (add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
 #+END_SRC
 *** Clojure-mode
 #+BEGIN_SRC emacs-lisp
