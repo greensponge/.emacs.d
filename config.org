@@ -142,8 +142,14 @@
      (setq company-idle-delay 0
            company-minimum-prefix-length 3
            company-selection-wrap-around 1
-           company-tooltip-align-annotations 't)
+           company-tooltip-align-annotations t
+           company-show-numbers t)
      (company-tng-configure-default))
+
+   (use-package company-tabnine 
+     :ensure t)
+
+   (add-to-list 'company-backends #'company-tabnine)
  #+END_SRC
 *** Buffers
  #+BEGIN_SRC emacs-lisp
@@ -325,7 +331,7 @@
     (global-set-key (kbd "<f7>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/tickler.org")))
     (global-set-key (kbd "<f8>") (lambda() (interactive)(find-file "~/.emacs.d/org-mode/org/someday.org")))
 
-
+    (setq org-agenda-start-on-weekday 1)
     (setq org-agenda-files '("~/.emacs.d/org-mode/org"))
 
     (setq org-refile-targets '(("~/.emacs.d/org-mode/org/gtd.org" :maxlevel . 3)
