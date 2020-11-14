@@ -376,12 +376,21 @@ You need to install =pandoc= separately on your system for preview to work.
 #+BEGIN_SRC emacs-lisp
   (use-package lsp-mode
     :hook ((css-mode . lsp)
-    (lsp-mode . lsp-enable-which-key-integration))
+           (lsp-mode . lsp-enable-which-key-integration))
     :ensure t
-    :config (setq lsp-completion-enable-additional-text-edit nil))
+    :config
+    (setq lsp-completion-enable-additional-text-edit nil)
+    (setq lsp-file-watch-ignored
+          '("[/\\\\]\\.git$"
+            "[/\\\\]_build$"
+            "[/\\\\]assets$"
+            "[/\\\\]cover$"
+            "[/\\\\]node_modules$"
+            "[/\\\\]submodules$")))
 
   (use-package lsp-ui
-    :ensure t)
+    :ensure t
+    :after (lsp-mode))
 #+END_SRC
 ** Dap-mode
 #+BEGIN_SRC emacs-lisp
@@ -435,13 +444,22 @@ You need to install =pandoc= separately on your system for preview to work.
 
 ** Treemacs
 #+BEGIN_SRC emacs-lisp
-(use-package treemacs
-  :ensure t
-  :config
-  (setq treemacs-show-hidden-files t)
-  (setq treemacs-follow-mode t)
-  (setq treemacs-project-follow-cleanup t))
+  (use-package treemacs
+    :ensure t
+    :config
+    (setq treemacs-show-hidden-files t)
+    (setq treemacs-git-mode 'extended)
+    (setq treemacs-follow-mode t)
+    (setq treemacs-project-follow-cleanup t))
   (global-set-key (kbd "C-b") 'treemacs) ; I never use the backward char shortcut anyway.
+
+  (use-package treemacs-projectile
+    :after (treemacs projectile)
+    :ensure t)
+
+  (use-package treemacs-magit
+    :after (treemacs magit)
+    :ensure t)
 #+END_SRC
 
 ** Magit
