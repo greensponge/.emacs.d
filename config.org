@@ -120,9 +120,13 @@
 *** Open shell
 #+BEGIN_SRC emacs-lisp
   (use-package shell-pop
-    :ensure t)
-  (global-set-key (kbd "C-f") 'shell-pop) ; I never use the forward char shortcut anyway.
-  (setq shell-pop-term-shell "/bin/bash")
+    :ensure t
+    :config
+    (global-set-key (kbd "C-f") 'shell-pop) ; I never use the forward char shortcut anyway.
+    (setq shell-pop-term-shell "/bin/bash")
+    (setq shell-pop-window-position "bottom")
+    (setq shell-pop-autocd-to-working-dir t)
+    (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist))
 #+END_SRC
 ** Advanced
 *** Expand-region
