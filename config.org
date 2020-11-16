@@ -138,6 +138,7 @@
    ("C--" . er/contract-region))
  #+END_SRC
 *** Auto-completion
+Run `M-x company-tabnine-install-binary` to install the TabNine binary for your system.
  #+BEGIN_SRC emacs-lisp
    (use-package company
      :ensure t
