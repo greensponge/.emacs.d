@@ -155,6 +155,16 @@ Run `M-x company-tabnine-install-binary` to install the TabNine binary for your 
      :ensure t)
 
    (add-to-list 'company-backends #'company-tabnine)
+
+   (use-package company-lsp
+     :commands company-lsp
+     :ensure t
+     :after (company lsp)
+     :config
+     (setq company-transformers nil
+           company-lsp-async t
+           company-lsp-cache-candidates nil)
+     (push 'company-lsp company-backends))
  #+END_SRC
 *** Buffers
  #+BEGIN_SRC emacs-lisp
