@@ -151,11 +151,6 @@ Run `M-x company-tabnine-install-binary` to install the TabNine binary for your 
            company-show-numbers t)
      (company-tng-configure-default))
 
-   (use-package company-tabnine 
-     :ensure t)
-
-   (add-to-list 'company-backends #'company-tabnine)
-
    (use-package company-lsp
      :commands company-lsp
      :ensure t
@@ -592,6 +587,14 @@ Highlights TODOs throughout all programming modes, add custom keywords as needed
             ("REVIEW"     font-lock-keyword-face bold)
             ("NOTE"       success bold)
             ("DEPRECATED" font-lock-doc-face bold))))
+#+END_SRC
+** Multiple cursors
+#+BEGIN_SRC emacs-lisp
+  (use-package multiple-cursors
+    :ensure t
+    :bind (("M-." . mc/mark-next-like-this)
+           ("M-," . mc/unmark-next-like-this)
+           ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 #+END_SRC
 * Programming
 ** C#
