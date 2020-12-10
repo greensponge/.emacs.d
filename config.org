@@ -381,11 +381,16 @@ You need to install =pandoc= separately on your system for preview to work.
 ** Lsp-mode
 #+BEGIN_SRC emacs-lisp
   (use-package lsp-mode
-    :hook ((css-mode . lsp)
-           (lsp-mode . lsp-enable-which-key-integration))
     :ensure t
+    :hook ((clojure-mode . lsp)
+           (css-mode . lsp)
+           (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp
+    :custom ((lsp-clojure-server-command '("java" "-jar" "/home/greensponge/clj-kondo/clj-kondo-lsp-server.jar")))
     :config
-    (setq lsp-completion-enable-additional-text-edit nil)
+    (dolist (m '(clojure-mode
+               clojurescript-mode))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure")))
     (setq lsp-file-watch-ignored
           '("[/\\\\]\\.git$"
             "[/\\\\]_build$"
