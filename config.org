@@ -602,6 +602,16 @@ Highlights TODOs throughout all programming modes, add custom keywords as needed
            ("C-c C-<" . mc/mark-all-like-this)
            ("C-S-<mouse-1>" . mc/add-cursor-on-click)))
 #+END_SRC
+** Centaur-tabs
+#+BEGIN_SRC emacs-lisp
+  (use-package centaur-tabs
+    :demand
+    :config
+    (centaur-tabs-mode t)
+    :bind
+    ("C-<prior>" . centaur-tabs-backward)
+    ("C-<next>" . centaur-tabs-forward))
+#+END_SRC
 * Programming
 ** C#
    #+BEGIN_SRC emacs-lisp
