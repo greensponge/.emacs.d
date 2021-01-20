@@ -619,6 +619,11 @@ Highlights TODOs throughout all programming modes, add custom keywords as needed
        :hook
        ((csharp-mode . lsp-deferred)))
    #+END_SRC
+** Docker
+#+BEGIN_SRC emacs-lisp
+  (use-package dockerfile-mode
+    :ensure t)
+#+END_SRC
 ** EditorConfig
 #+BEGIN_SRC emacs-lisp
   (use-package editorconfig
